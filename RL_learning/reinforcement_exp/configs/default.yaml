@@ -1,0 +1,54 @@
+# Default configuration for the battery optimisation project.
+# All paths are relative to the reinforcement_exp/ directory.
+
+data:
+  raw_dir: data/raw
+  aggregated_dir: data/aggregated
+  combined_dir: data/combined
+
+solar:
+  system_size_kwp: 2.0
+  performance_ratio: 0.7
+  locations:
+    manchester:
+      latitude: 53.48
+      raw_csv: data/raw/POWER_Point_Hourly_20250701_20250731_053d38N_002d21W_LST.csv
+      output_csv: data/aggregated/manchester_solar_power.csv
+    barcelona:
+      latitude: 41.39
+      raw_csv: data/raw/POWER_Point_Hourly_20250701_20250731_041d38N_002d16E_LST.csv
+      output_csv: data/aggregated/barcelona_solar_power.csv
+
+battery:
+  capacity_kwh: 10.0
+  charge_efficiency: 0.90
+  discharge_efficiency: 0.90
+  max_charge_rate_kw: 5.0
+  max_discharge_rate_kw: 5.0
+  initial_soc: 0.0  # state of charge at episode start (kWh)
+
+# Hyperparameters for RL agents (overridden per-agent in configs/dqn.yaml etc.)
+training:
+  gamma: 0.99       # discount factor
+  seed: 42
+  
+data_splits:
+  train_ids: [63, 48, 191, 98, 100, 84, 160, 171, 152, 254, 276, 257, 21, 117, 91,
+    234, 168, 28, 272, 279, 1, 120, 220, 128, 207, 297, 79, 282, 298, 275, 287, 183,
+    300, 284, 14, 5, 235, 70, 223, 285, 4, 260, 148, 53, 236, 129, 58, 40, 176, 52,
+    66, 26, 82, 200, 299, 270, 173, 281, 203, 31, 42, 147, 231, 238, 227, 150, 145,
+    77, 233, 94, 259, 151, 137, 102, 72, 136, 190, 56, 97, 64, 274, 250, 222, 134,
+    267, 247, 32, 206, 167, 103, 49, 193, 60, 9, 29, 256, 154, 62, 86, 140, 286, 204,
+    133, 106, 292, 209, 39, 245, 268, 230, 199, 194, 266, 22, 263, 109, 229, 294,
+    35, 10, 90, 155, 195, 212, 114, 211, 216, 27, 174, 158, 81, 215, 68, 11, 175,
+    180, 61, 288, 161, 6, 146, 50, 69, 198, 96, 251, 187, 126, 74, 135, 296, 166,
+    34, 164, 163, 157, 241, 181, 123, 293, 132, 110, 269, 83, 170, 218, 57, 182, 54,
+    255, 88, 30, 13, 108, 258, 122, 142, 295, 243, 130, 265, 248, 93, 186, 41, 262,
+    149, 15, 205, 219, 7, 87, 232, 178, 188, 224, 228, 240, 264, 261, 244, 213, 80,
+    46, 121, 278, 116, 172, 85, 125, 47, 105, 92, 201, 20, 252, 208, 89, 202, 144,
+    113, 221, 75, 237, 23, 153, 95, 253, 217, 273, 189, 67, 283, 101, 73, 271, 71,
+    156, 291, 127, 179, 226, 290, 119, 76, 249, 12, 118, 55, 159, 65, 225, 185, 246]
+  val_ids: [3, 44, 124, 19, 169, 78, 210, 33, 131, 107, 214, 45, 280, 162, 59, 25,
+    17, 111, 139, 192, 18, 242, 112, 197, 36, 37, 184, 51, 8, 104, 177, 141, 289,
+    43, 24]
+  test_ids: [277, 165, 115, 239, 16, 143, 196, 38, 99, 138]
